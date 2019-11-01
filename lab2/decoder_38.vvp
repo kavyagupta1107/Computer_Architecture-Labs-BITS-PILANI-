@@ -1,0 +1,38 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_01058108 .scope module, "decoder_38" "decoder_38" 2 1;
+ .timescale 0 0;
+L_01053788 .functor NOT 1, C4<z>, C4<0>, C4<0>, C4<0>;
+L_010B10B0 .functor NOT 1, C4<z>, C4<0>, C4<0>, C4<0>;
+L_010B0F28 .functor NOT 1, C4<z>, C4<0>, C4<0>, C4<0>;
+L_010B11C8 .functor AND 1, L_01053788, L_010B10B0, L_010B0F28, C4<1>;
+L_010B1078 .functor AND 1, L_01053788, L_010B10B0, C4<z>, C4<1>;
+L_010B1238 .functor AND 1, L_01053788, C4<z>, L_010B0F28, C4<1>;
+L_010B1120 .functor AND 1, L_01053788, C4<z>, C4<z>, C4<1>;
+L_010B1270 .functor AND 1, C4<z>, L_010B10B0, L_010B0F28, C4<1>;
+L_010B1190 .functor AND 1, C4<z>, L_010B10B0, C4<z>, C4<1>;
+L_010B0F60 .functor AND 1, C4<z>, C4<z>, L_010B0F28, C4<1>;
+L_010B0EF0 .functor AND 1, C4<z>, C4<z>, C4<z>, C4<1>;
+v01093328_0 .net "d0", 0 0, L_010B11C8; 1 drivers
+v01093640_0 .net "d1", 0 0, L_010B1078; 1 drivers
+v01093748_0 .net "d2", 0 0, L_010B1238; 1 drivers
+v010937A0_0 .net "d3", 0 0, L_010B1120; 1 drivers
+v010937F8_0 .net "d4", 0 0, L_010B1270; 1 drivers
+v01093380_0 .net "d5", 0 0, L_010B1190; 1 drivers
+v01093850_0 .net "d6", 0 0, L_010B0F60; 1 drivers
+v01093698_0 .net "d7", 0 0, L_010B0EF0; 1 drivers
+v01093118_0 .net "x", 0 0, C4<z>; 0 drivers
+v010931C8_0 .net "x0", 0 0, L_01053788; 1 drivers
+v010933D8_0 .net "y", 0 0, C4<z>; 0 drivers
+v01093170_0 .net "y0", 0 0, L_010B10B0; 1 drivers
+v01093220_0 .net "z", 0 0, C4<z>; 0 drivers
+v01093430_0 .net "z0", 0 0, L_010B0F28; 1 drivers
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "decoder_38.v";
