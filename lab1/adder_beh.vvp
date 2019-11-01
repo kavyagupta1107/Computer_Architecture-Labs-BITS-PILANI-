@@ -1,0 +1,102 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_01177E60 .scope module, "add_sub" "add_sub" 2 34;
+ .timescale 0 0;
+v01173128_0 .net "A1", 3 0, C4<zzzz>; 0 drivers
+v01173180_0 .net "B1", 3 0, C4<zzzz>; 0 drivers
+v011731D8_0 .var "C3", 0 0;
+v01173DD0_0 .var "S3", 3 0;
+v01173E28_0 .net "select", 0 0, C4<z>; 0 drivers
+E_01178E28 .event edge, v01173E28_0, v01173180_0, v01173128_0;
+S_01178548 .scope module, "fbit_adder" "fbit_adder" 2 21;
+ .timescale 0 0;
+v01173E80_0 .net "A", 3 0, C4<zzzz>; 0 drivers
+v00FF2290_0 .net "B", 3 0, C4<zzzz>; 0 drivers
+v00FF22E8_0 .var "C2", 0 0;
+v00FF2340_0 .var "S2", 3 0;
+v01174378_0 .net "i", 0 0, C4<z>; 0 drivers
+E_01178E48 .event edge, v01174378_0, v00FF2290_0, v01173E80_0;
+S_011787F0 .scope module, "full_adder" "full_adder" 2 11;
+ .timescale 0 0;
+v011743D0_0 .var "C1", 0 0;
+v01174428_0 .var "S1", 0 0;
+v01174480_0 .net "x1", 0 0, C4<z>; 0 drivers
+v0117DD38_0 .net "y1", 0 0, C4<z>; 0 drivers
+v0117DD90_0 .net "z1", 0 0, C4<z>; 0 drivers
+E_01178F88 .event edge, v0117DD90_0, v0117DD38_0, v01174480_0;
+S_01178328 .scope module, "half_adder" "half_adder" 2 1;
+ .timescale 0 0;
+v0117DDE8_0 .var "C", 0 0;
+v0117DE40_0 .var "S", 0 0;
+v0117E5A0_0 .net "x", 0 0, C4<z>; 0 drivers
+v0117E548_0 .net "y", 0 0, C4<z>; 0 drivers
+E_011793A8 .event edge, v0117E548_0, v0117E5A0_0;
+    .scope S_01177E60;
+T_0 ;
+    %wait E_01178E28;
+    %load/v 8, v01173128_0, 4;
+    %mov 12, 0, 1;
+    %load/v 13, v01173180_0, 4;
+    %mov 17, 0, 1;
+    %load/v 18, v01173E28_0, 1;
+    %mov 19, 0, 4;
+    %xor 13, 18, 5;
+    %add 8, 13, 5;
+    %load/v 13, v01173E28_0, 1;
+    %mov 14, 0, 4;
+    %add 8, 13, 5;
+    %set/v v01173DD0_0, 8, 4;
+    %set/v v011731D8_0, 12, 1;
+    %jmp T_0;
+    .thread T_0, $push;
+    .scope S_01178548;
+T_1 ;
+    %wait E_01178E48;
+    %load/v 8, v01173E80_0, 4;
+    %mov 12, 0, 1;
+    %load/v 13, v00FF2290_0, 4;
+    %mov 17, 0, 1;
+    %add 8, 13, 5;
+    %load/v 13, v01174378_0, 1;
+    %mov 14, 0, 4;
+    %add 8, 13, 5;
+    %set/v v00FF2340_0, 8, 4;
+    %set/v v00FF22E8_0, 12, 1;
+    %jmp T_1;
+    .thread T_1, $push;
+    .scope S_011787F0;
+T_2 ;
+    %wait E_01178F88;
+    %load/v 8, v01174480_0, 1;
+    %mov 9, 0, 1;
+    %load/v 10, v0117DD38_0, 1;
+    %mov 11, 0, 1;
+    %add 8, 10, 2;
+    %load/v 10, v0117DD90_0, 1;
+    %mov 11, 0, 1;
+    %add 8, 10, 2;
+    %set/v v01174428_0, 8, 1;
+    %set/v v011743D0_0, 9, 1;
+    %jmp T_2;
+    .thread T_2, $push;
+    .scope S_01178328;
+T_3 ;
+    %wait E_011793A8;
+    %load/v 8, v0117E5A0_0, 1;
+    %mov 9, 0, 1;
+    %load/v 10, v0117E548_0, 1;
+    %mov 11, 0, 1;
+    %add 8, 10, 2;
+    %set/v v0117DE40_0, 8, 1;
+    %set/v v0117DDE8_0, 9, 1;
+    %jmp T_3;
+    .thread T_3, $push;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "adder_beh.v";

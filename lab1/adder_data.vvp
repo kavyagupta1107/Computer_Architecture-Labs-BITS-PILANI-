@@ -1,0 +1,98 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_007CC020 .scope module, "add_sub" "add_sub" 2 21;
+ .timescale 0 0;
+L_00FE0E20 .functor XOR 5, L_01006488, L_01006068, C4<00000>, C4<00000>;
+v007CA228_0 .net "A1", 3 0, C4<zzzz>; 0 drivers
+v007CA0C8_0 .net "B1", 3 0, C4<zzzz>; 0 drivers
+v007CA330_0 .net "C3", 0 0, L_01005848; 1 drivers
+v007CA120_0 .net "S3", 3 0, L_01005AB0; 1 drivers
+v007C9E08_0 .net *"_s10", 0 0, C4<0>; 1 drivers
+v007CA2D8_0 .net *"_s11", 4 0, L_01006068; 1 drivers
+v007C9EB8_0 .net *"_s14", 3 0, C4<0000>; 1 drivers
+v01004C98_0 .net *"_s15", 4 0, L_00FE0E20; 1 drivers
+v01005060_0 .net *"_s17", 4 0, L_01006010; 1 drivers
+v01005270_0 .net *"_s19", 4 0, L_01005F60; 1 drivers
+v01005378_0 .net *"_s22", 3 0, C4<0000>; 1 drivers
+v010055E0_0 .net *"_s23", 4 0, L_010063D8; 1 drivers
+v01005638_0 .net *"_s3", 4 0, L_01005CF8; 1 drivers
+v01004FB0_0 .net *"_s6", 0 0, C4<0>; 1 drivers
+v010053D0_0 .net *"_s7", 4 0, L_01006488; 1 drivers
+v010050B8_0 .net "select", 0 0, C4<z>; 0 drivers
+L_01005848 .part L_010063D8, 4, 1;
+L_01005AB0 .part L_010063D8, 0, 4;
+L_01005CF8 .concat [ 4 1 0 0], C4<zzzz>, C4<0>;
+L_01006488 .concat [ 4 1 0 0], C4<zzzz>, C4<0>;
+L_01006068 .concat [ 1 4 0 0], C4<z>, C4<0000>;
+L_01006010 .arith/sum 5, L_01005CF8, L_00FE0E20;
+L_01005F60 .concat [ 1 4 0 0], C4<z>, C4<0000>;
+L_010063D8 .arith/sum 5, L_01006010, L_01005F60;
+S_007CBCF0 .scope module, "fbit_adder" "fbit_adder" 2 13;
+ .timescale 0 0;
+v01005530_0 .net "A", 3 0, C4<zzzz>; 0 drivers
+v01004EA8_0 .net "B", 3 0, C4<zzzz>; 0 drivers
+v01005320_0 .net "C2", 0 0, L_010061C8; 1 drivers
+v010051C0_0 .net "S2", 3 0, L_01006118; 1 drivers
+v01005480_0 .net *"_s10", 0 0, C4<0>; 1 drivers
+v01005008_0 .net *"_s11", 4 0, L_01006698; 1 drivers
+v01005428_0 .net *"_s13", 4 0, L_01006538; 1 drivers
+v01004F58_0 .net *"_s16", 3 0, C4<0000>; 1 drivers
+v01005588_0 .net *"_s17", 4 0, L_010060C0; 1 drivers
+v01004CF0_0 .net *"_s3", 4 0, L_01005DA8; 1 drivers
+v01004E50_0 .net *"_s6", 0 0, C4<0>; 1 drivers
+v01004D48_0 .net *"_s7", 4 0, L_01006170; 1 drivers
+v01004DA0_0 .net "i", 0 0, C4<z>; 0 drivers
+L_010061C8 .part L_010060C0, 4, 1;
+L_01006118 .part L_010060C0, 0, 4;
+L_01005DA8 .concat [ 4 1 0 0], C4<zzzz>, C4<0>;
+L_01006170 .concat [ 4 1 0 0], C4<zzzz>, C4<0>;
+L_01006698 .arith/sum 5, L_01005DA8, L_01006170;
+L_01006538 .concat [ 1 4 0 0], C4<z>, C4<0000>;
+L_010060C0 .arith/sum 5, L_01006698, L_01006538;
+S_007CBF98 .scope module, "full_adder" "full_adder" 2 7;
+ .timescale 0 0;
+v01004C40_0 .net "C1", 0 0, L_010065E8; 1 drivers
+v01005168_0 .net "S1", 0 0, L_01006220; 1 drivers
+v01005110_0 .net *"_s10", 0 0, C4<0>; 1 drivers
+v01005690_0 .net *"_s11", 1 0, L_010062D0; 1 drivers
+v01004DF8_0 .net *"_s13", 1 0, L_01006328; 1 drivers
+v01005218_0 .net *"_s16", 0 0, C4<0>; 1 drivers
+v010056E8_0 .net *"_s17", 1 0, L_01005CA0; 1 drivers
+v010054D8_0 .net *"_s3", 1 0, L_010066F0; 1 drivers
+v01004F00_0 .net *"_s6", 0 0, C4<0>; 1 drivers
+v010052C8_0 .net *"_s7", 1 0, L_01006278; 1 drivers
+v01005950_0 .net "x1", 0 0, C4<z>; 0 drivers
+v010058A0_0 .net "y1", 0 0, C4<z>; 0 drivers
+v01005B08_0 .net "z1", 0 0, C4<z>; 0 drivers
+L_010065E8 .part L_01005CA0, 1, 1;
+L_01006220 .part L_01005CA0, 0, 1;
+L_010066F0 .concat [ 1 1 0 0], C4<z>, C4<0>;
+L_01006278 .concat [ 1 1 0 0], C4<z>, C4<0>;
+L_010062D0 .arith/sum 2, L_010066F0, L_01006278;
+L_01006328 .concat [ 1 1 0 0], C4<z>, C4<0>;
+L_01005CA0 .arith/sum 2, L_010062D0, L_01006328;
+S_007CC1B8 .scope module, "half_adder" "half_adder" 2 1;
+ .timescale 0 0;
+v01005B60_0 .net "C", 0 0, L_01006640; 1 drivers
+v01005BB8_0 .net "S", 0 0, L_01005FB8; 1 drivers
+v010058F8_0 .net *"_s10", 0 0, C4<0>; 1 drivers
+v01005740_0 .net *"_s11", 1 0, L_010064E0; 1 drivers
+v01005A58_0 .net *"_s3", 1 0, L_01006380; 1 drivers
+v010059A8_0 .net *"_s6", 0 0, C4<0>; 1 drivers
+v01005798_0 .net *"_s7", 1 0, L_01006430; 1 drivers
+v010057F0_0 .net "x", 0 0, C4<z>; 0 drivers
+v01005A00_0 .net "y", 0 0, C4<z>; 0 drivers
+L_01006640 .part L_010064E0, 1, 1;
+L_01005FB8 .part L_010064E0, 0, 1;
+L_01006380 .concat [ 1 1 0 0], C4<z>, C4<0>;
+L_01006430 .concat [ 1 1 0 0], C4<z>, C4<0>;
+L_010064E0 .arith/sum 2, L_01006380, L_01006430;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "adder_data.v";

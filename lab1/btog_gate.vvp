@@ -1,0 +1,45 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_010F88F8 .scope module, "bcdToGray_gate" "bcdToGray_gate" 2 1;
+ .timescale 0 0;
+L_010FE760 .functor AND 1, L_010FE348, L_010FE3A0, C4<1>, C4<1>;
+L_010FE980 .functor XOR 1, L_010FE240, L_010FE3F8, C4<0>, C4<0>;
+L_010FE7F8 .functor XOR 1, L_010FE450, L_010FE4A8, C4<0>, C4<0>;
+L_010FE9F0 .functor XOR 1, L_010FE608, L_010FE660, C4<0>, C4<0>;
+v010F8498_0 .net "In", 3 0, C4<zzzz>; 0 drivers
+RS_0081188C .resolv tri, L_010FDF80, L_010FE030, L_010FE5B0, L_010FE558;
+v010F3128_0 .net8 "Out", 3 0, RS_0081188C; 4 drivers
+v010F3180_0 .net *"_s0", 0 0, L_010FE760; 1 drivers
+v010F31D8_0 .net *"_s11", 0 0, L_010FE240; 1 drivers
+v010FD9F8_0 .net *"_s13", 0 0, L_010FE3F8; 1 drivers
+v010FDA50_0 .net *"_s14", 0 0, L_010FE7F8; 1 drivers
+v010FDAA8_0 .net *"_s17", 0 0, L_010FE450; 1 drivers
+v010FDB00_0 .net *"_s19", 0 0, L_010FE4A8; 1 drivers
+v010FDFD8_0 .net *"_s20", 0 0, L_010FE9F0; 1 drivers
+v010FE1E8_0 .net *"_s23", 0 0, L_010FE608; 1 drivers
+v010FE6B8_0 .net *"_s25", 0 0, L_010FE660; 1 drivers
+v010FE0E0_0 .net *"_s3", 0 0, L_010FE348; 1 drivers
+v010FE298_0 .net/s *"_s4", 1 0, C4<01>; 1 drivers
+v010FE2F0_0 .net *"_s7", 0 0, L_010FE3A0; 1 drivers
+v010FE500_0 .net *"_s8", 0 0, L_010FE980; 1 drivers
+L_010FDF80 .part/pv L_010FE760, 3, 1, 4;
+L_010FE348 .part C4<zzzz>, 3, 1;
+L_010FE3A0 .part C4<01>, 0, 1;
+L_010FE030 .part/pv L_010FE980, 2, 1, 4;
+L_010FE240 .part C4<zzzz>, 3, 1;
+L_010FE3F8 .part C4<zzzz>, 2, 1;
+L_010FE5B0 .part/pv L_010FE7F8, 1, 1, 4;
+L_010FE450 .part C4<zzzz>, 2, 1;
+L_010FE4A8 .part C4<zzzz>, 1, 1;
+L_010FE558 .part/pv L_010FE9F0, 0, 1, 4;
+L_010FE608 .part C4<zzzz>, 1, 1;
+L_010FE660 .part C4<zzzz>, 0, 1;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "btog_gate.v";
