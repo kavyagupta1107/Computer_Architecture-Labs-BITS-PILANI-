@@ -1,0 +1,104 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_011545D8 .scope module, "dff_async" "dff_async" 2 16;
+ .timescale 0 0;
+v01157C98_0 .net "clear", 0 0, C4<z>; 0 drivers
+v01153128_0 .net "clk", 0 0, C4<z>; 0 drivers
+v01153180_0 .net "d", 0 0, C4<z>; 0 drivers
+v011531D8_0 .var "q", 0 0;
+E_011589A0/0 .event negedge, v01157C98_0;
+E_011589A0/1 .event posedge, v01153128_0;
+E_011589A0 .event/or E_011589A0/0, E_011589A0/1;
+S_01159EF0 .scope module, "testbench" "testbench" 3 2;
+ .timescale 0 0;
+v01157EA0_0 .var "clear", 0 0;
+v01157EF8_0 .var "clk", 0 0;
+v01157F50_0 .var "d", 0 0;
+v01157FA8_0 .net "q", 0 0, v01157E48_0; 1 drivers
+S_0115A000 .scope module, "df" "dff_sync" 3 5, 2 1, S_01159EF0;
+ .timescale 0 0;
+v01153B00_0 .net "clear", 0 0, v01157EA0_0; 1 drivers
+v01153B58_0 .net "clk", 0 0, v01157EF8_0; 1 drivers
+v01153BB0_0 .net "d", 0 0, v01157F50_0; 1 drivers
+v01157E48_0 .var "q", 0 0;
+E_01158920 .event posedge, v01153B58_0;
+    .scope S_011545D8;
+T_0 ;
+    %wait E_011589A0;
+    %load/v 8, v01157C98_0, 1;
+    %inv 8, 1;
+    %jmp/0xz  T_0.0, 8;
+    %ix/load 0, 1, 0;
+    %assign/v0 v011531D8_0, 0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/v 8, v01153180_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v011531D8_0, 0, 8;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0115A000;
+T_1 ;
+    %wait E_01158920;
+    %load/v 8, v01153B00_0, 1;
+    %inv 8, 1;
+    %jmp/0xz  T_1.0, 8;
+    %ix/load 0, 1, 0;
+    %assign/v0 v01157E48_0, 0, 0;
+    %jmp T_1.1;
+T_1.0 ;
+    %load/v 8, v01153BB0_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v01157E48_0, 0, 8;
+T_1.1 ;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_01159EF0;
+T_2 ;
+    %wait E_01158920;
+    %vpi_call 3 7 "$display", $time, "d=%b,clear=%b,clk=%b,q=%b", v01157F50_0, v01157EA0_0, v01157EF8_0, v01157FA8_0;
+    %jmp T_2;
+    .thread T_2;
+    .scope S_01159EF0;
+T_3 ;
+T_3.0 ;
+    %set/v v01157EF8_0, 0, 1;
+    %delay 5, 0;
+    %set/v v01157EF8_0, 1, 1;
+    %delay 5, 0;
+    %set/v v01157EF8_0, 0, 1;
+    %jmp T_3.0;
+    %end;
+    .thread T_3;
+    .scope S_01159EF0;
+T_4 ;
+    %set/v v01157F50_0, 0, 1;
+    %set/v v01157EA0_0, 1, 1;
+    %delay 4, 0;
+    %set/v v01157F50_0, 1, 1;
+    %set/v v01157EA0_0, 0, 1;
+    %delay 50, 0;
+    %set/v v01157F50_0, 1, 1;
+    %set/v v01157EA0_0, 1, 1;
+    %delay 20, 0;
+    %set/v v01157F50_0, 0, 1;
+    %set/v v01157EA0_0, 0, 1;
+    %end;
+    .thread T_4;
+    .scope S_01159EF0;
+T_5 ;
+    %vpi_call 3 33 "$dumpfile", "dff_tb.vcd";
+    %vpi_call 3 34 "$dumpvars";
+    %end;
+    .thread T_5;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "./dff.v";
+    "dff_tb.v";

@@ -1,0 +1,155 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_00A97A20 .scope module, "testbench" "testbench" 2 57;
+ .timescale 0 0;
+v0084BA08_0 .var "A", 0 3;
+v0084B7A0_0 .var "B", 0 3;
+v0084B958_0 .net "C", 0 0, L_0084B9B0; 1 drivers
+v0084BBC0_0 .net "S", 0 3, v008207C0_0; 1 drivers
+v0084B900_0 .var "clk", 0 0;
+S_00A97AA8 .scope module, "m" "mainmodule" 2 63, 2 43, S_00A97A20;
+ .timescale 0 0;
+v00820190_0 .net "A", 0 3, v0084BA08_0; 1 drivers
+v00820608_0 .net "A1", 0 3, v00820818_0; 1 drivers
+v008200E0_0 .net "B", 0 3, v0084B7A0_0; 1 drivers
+v00820660_0 .net "B1", 0 3, v00820768_0; 1 drivers
+v00820240_0 .alias "C", 0 0, v0084B958_0;
+v00820298_0 .alias "S1", 0 3, v0084BBC0_0;
+v00820348_0 .net "cin", 0 0, v008205B0_0; 1 drivers
+v0084BAB8_0 .net "clk", 0 0, v0084B900_0; 1 drivers
+v0084BB10_0 .net "s", 0 0, L_0084BA60; 1 drivers
+L_0084B010 .part v00820818_0, 0, 1;
+L_0084B068 .part v00820768_0, 0, 1;
+S_00849988 .scope module, "l1" "shift_reg_loadA" 2 50, 2 17, S_00A97AA8;
+ .timescale 0 0;
+v008207C0_0 .var "S1", 0 3;
+v008203F8_0 .alias "clk", 0 0, v0084BAB8_0;
+v008202F0_0 .alias "s", 0 0, v0084BB10_0;
+v008204A8_0 .alias "x", 0 3, v00820190_0;
+v00820818_0 .var "y", 0 3;
+S_00848DD8 .scope module, "l2" "shift_reg_loadB" 2 51, 2 32, S_00A97AA8;
+ .timescale 0 0;
+v008203A0_0 .alias "clk", 0 0, v0084BAB8_0;
+v00820500_0 .alias "x", 0 3, v008200E0_0;
+v00820768_0 .var "y", 0 3;
+S_00A97CC8 .scope module, "d1" "dff" 2 52, 2 7, S_00A97AA8;
+ .timescale 0 0;
+v00820138_0 .alias "clk", 0 0, v0084BAB8_0;
+v008201E8_0 .alias "d", 0 0, v0084B958_0;
+v008205B0_0 .var "q", 0 0;
+E_00A98F38 .event posedge, v00820138_0;
+S_00A97C40 .scope module, "fa1" "fa" 2 53, 2 1, S_00A97AA8;
+ .timescale 0 0;
+v00A9E6D0_0 .net *"_s10", 0 0, C4<0>; 1 drivers
+v00A9E7C0_0 .net *"_s11", 1 0, L_0084B7F8; 1 drivers
+v00A9EF70_0 .net *"_s13", 1 0, L_0084B850; 1 drivers
+v00823890_0 .net *"_s16", 0 0, C4<0>; 1 drivers
+v008238E8_0 .net *"_s17", 1 0, L_0084B8A8; 1 drivers
+v00823940_0 .net *"_s3", 1 0, L_0084BB68; 1 drivers
+v00821938_0 .net *"_s6", 0 0, C4<0>; 1 drivers
+v00821990_0 .net *"_s7", 1 0, L_0084B748; 1 drivers
+v008219E8_0 .alias "c", 0 0, v0084B958_0;
+v008206B8_0 .alias "s", 0 0, v0084BB10_0;
+v00820558_0 .net "x", 0 0, L_0084B010; 1 drivers
+v00820710_0 .net "y", 0 0, L_0084B068; 1 drivers
+v00820450_0 .alias "z", 0 0, v00820348_0;
+L_0084B9B0 .part L_0084B8A8, 1, 1;
+L_0084BA60 .part L_0084B8A8, 0, 1;
+L_0084BB68 .concat [ 1 1 0 0], L_0084B010, C4<0>;
+L_0084B748 .concat [ 1 1 0 0], L_0084B068, C4<0>;
+L_0084B7F8 .arith/sum 2, L_0084BB68, L_0084B748;
+L_0084B850 .concat [ 1 1 0 0], v008205B0_0, C4<0>;
+L_0084B8A8 .arith/sum 2, L_0084B7F8, L_0084B850;
+    .scope S_00849988;
+T_0 ;
+    %load/v 8, v008204A8_0, 4;
+    %cassign/v v00820818_0, 8, 4;
+    %cassign/link v00820818_0, v008204A8_0;
+    %end;
+    .thread T_0;
+    .scope S_00849988;
+T_1 ;
+    %wait E_00A98F38;
+    %ix/load 1, 1, 0;
+    %mov 4, 0, 1;
+    %jmp/1 T_1.0, 4;
+    %load/x1p 16, v00820818_0, 3;
+    %jmp T_1.1;
+T_1.0 ;
+    %mov 16, 2, 3;
+T_1.1 ;
+    %mov 12, 16, 3; Move signal select into place
+    %load/v 15, v008202F0_0, 1;
+    %set/v v00820818_0, 12, 4;
+    %load/v 12, v00820818_0, 4;
+    %set/v v008207C0_0, 12, 4;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_00848DD8;
+T_2 ;
+    %load/v 12, v00820500_0, 4;
+    %cassign/v v00820768_0, 12, 4;
+    %cassign/link v00820768_0, v00820500_0;
+    %end;
+    .thread T_2;
+    .scope S_00848DD8;
+T_3 ;
+    %wait E_00A98F38;
+    %load/v 16, v00820768_0, 4;
+    %ix/load 0, 1, 0;
+    %mov 4, 0, 1;
+    %shiftr/i0  16, 4;
+    %ix/load 0, 4, 0;
+    %assign/v0 v00820768_0, 0, 16;
+    %jmp T_3;
+    .thread T_3;
+    .scope S_00A97CC8;
+T_4 ;
+    %set/v v008205B0_0, 0, 1;
+    %end;
+    .thread T_4;
+    .scope S_00A97CC8;
+T_5 ;
+    %wait E_00A98F38;
+    %load/v 16, v008201E8_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v008205B0_0, 0, 16;
+    %jmp T_5;
+    .thread T_5;
+    .scope S_00A97A20;
+T_6 ;
+    %wait E_00A98F38;
+    %vpi_call 2 65 "$monitor", $time, "|A=%b|B=%b|S=%b|C=%b", v0084BA08_0, v0084B7A0_0, v0084BBC0_0, v0084B958_0;
+    %jmp T_6;
+    .thread T_6;
+    .scope S_00A97A20;
+T_7 ;
+T_7.0 ;
+    %set/v v0084B900_0, 0, 1;
+    %delay 5, 0;
+    %set/v v0084B900_0, 1, 1;
+    %delay 5, 0;
+    %set/v v0084B900_0, 0, 1;
+    %jmp T_7.0;
+    %end;
+    .thread T_7;
+    .scope S_00A97A20;
+T_8 ;
+    %delay 2, 0;
+    %movi 16, 10, 4;
+    %set/v v0084BA08_0, 16, 4;
+    %movi 16, 5, 4;
+    %set/v v0084B7A0_0, 16, 4;
+    %delay 100, 0;
+    %vpi_call 2 83 "$finish";
+    %end;
+    .thread T_8;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "serial_add.v";
