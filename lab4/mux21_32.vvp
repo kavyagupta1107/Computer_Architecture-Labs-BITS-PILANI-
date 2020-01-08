@@ -1,0 +1,53 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_00A14178 .scope module, "testbench" "testbench" 2 16;
+ .timescale 0 0;
+v008F2EF8_0 .var "in1", 0 31;
+v008F2F50_0 .var "in2", 0 31;
+v008F2FA8_0 .net "out", 0 31, v00A131D8_0; 1 drivers
+v008F3000_0 .var "sel", 0 0;
+S_00A17E60 .scope module, "m" "mux21_32" 2 20, 2 1, S_00A14178;
+ .timescale 0 0;
+v00A13128_0 .net "in1", 0 31, v008F2EF8_0; 1 drivers
+v00A13180_0 .net "in2", 0 31, v008F2F50_0; 1 drivers
+v00A131D8_0 .var "out", 0 31;
+v008F2EA0_0 .net "sel", 0 0, v008F3000_0; 1 drivers
+E_00A14818 .event edge, v008F2EA0_0, v00A13180_0, v00A13128_0;
+    .scope S_00A17E60;
+T_0 ;
+    %wait E_00A14818;
+    %load/v 8, v008F2EA0_0, 1;
+    %mov 9, 0, 1;
+    %cmpi/u 8, 0, 2;
+    %jmp/0xz  T_0.0, 4;
+    %load/v 8, v00A13128_0, 32;
+    %set/v v00A131D8_0, 8, 32;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/v 8, v00A13180_0, 32;
+    %set/v v00A131D8_0, 8, 32;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0, $push;
+    .scope S_00A14178;
+T_1 ;
+    %vpi_call 2 23 "$monitor", $time, "|in1=%b|in2=%b|sel=%b|out=%b", v008F2EF8_0, v008F2F50_0, v008F3000_0, v008F2FA8_0;
+    %set/v v008F2EF8_0, 1, 32;
+    %set/v v008F2F50_0, 0, 32;
+    %delay 2, 0;
+    %set/v v008F3000_0, 0, 1;
+    %delay 5, 0;
+    %set/v v008F3000_0, 1, 1;
+    %delay 10, 0;
+    %set/v v008F3000_0, 0, 1;
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "mux21_32.v";
